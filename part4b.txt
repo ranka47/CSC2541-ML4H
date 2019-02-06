@@ -1,0 +1,12 @@
+respiratory
+1 2 3 pt ml 4 0 8 7 10 12 l 6 assessment 5 c pm mg respiratory dl plan 9 patient name 20 p status response given sounds 24 100 lung tube last intubated meq continue urine icu failure 18 action hr comments rr 30 iv 25 fluid airway hct 11 right 26 blood min line labs cmh2o w 23 per 19 ct acute care bp monitor fio2 total kg 00 left abg k noted pain 15 intubation 27 stool 21 31 g sputum chest hospital medications 22 28 o2 placed 02 likely since wbc transferred 14 time 
+
+vomiting
+pain pt c 2 plan name iv last l w 1 3 insulin given hr bp mg dilaudid 4 continue p 6 left po control monitor o2 100 right 5 per 8 patient gtt nausea 0 pca 7 oriented 10 response chest well hct stable drain renal home ni urine prn x fluid clear morphine acute labs 20 received 9 back assessment denies 12 status noted scale r bs time ml history 11 today sbp cont blood oob q care ativan able alert abd foley abdominal soft meds n edema 97 also hospital pericardial 99 chronic ivf diet 24 neuro 
+
+urine
+pt 2 name 1 hr 4 patient given c o2 sats 3 7 plan urine last w pain resp noted mask 5 chest hospital left right p bp ni cough also continue 100 6 well pneumonia lung nc monitor edema sob placed 8 r micu clear cont received bipap started iv care respiratory nebs sat note year low today pulmonary per medical neb fever u cxr status rr family 12 soft increased skin history hypoxia pna nrb blood 20 fluid abd 80 temp 95 mg high done acute ordered reason remains lasix 9 po 11 l throughout 0 ed x 
+
+pulse
+1 ml 2 mg dl 0 3 5 4 7 8 l 9 assessment pm 6 12 10 patient 11 meq plan 24 icu 20 assessed pt respiratory total action history response medications c comments continue last blood pulse labs code 30 po acute balance spo2 ul given name k pain rhythm left 04 status 18 likely rr 22 25 urine admission allergies hct 00 min fluid hr bp prophylaxis failure dose 19 05 p 03 15 28 right 29 ivf g o2 23 control review 27 mmhg present 08 systems nutrition cmh2o normal 16 14 antibiotics hour iv 21 
+
