@@ -21,7 +21,7 @@ def plot_roc_graph(fpr, tpr, filename):
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.title('ROC Curve')
-    plt.savefig(filename + '.png')
+    plt.savefig("results/" + filename + '.png')
 
 def mean_normalize(data):
     # Changes scale of the distribution
