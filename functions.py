@@ -7,6 +7,8 @@ from nltk.corpus import stopwords
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import re
+
 from operator import itemgetter
 
 SPACE = " "
@@ -65,6 +67,23 @@ def mortality_factors(coeff, feature_names, n=5):
     for coefficient, feature_name in coeff_to_feature[-n:]:
         print(coefficient, feature_name)
 
+    print("Absolute Coefficient values ...")
+
+    coeff_to_feature = []
+    for index in range(len(feature_names)):
+        coeff_to_feature.append([abs(coeff[0][index]), feature_names[index]])
+
+    coeff_to_feature = sorted(coeff_to_feature, key=itemgetter(0))
+    
+    print("Lowest " + str(n) + ": ")
+    for coefficient, feature_name in coeff_to_feature[0:n]:
+        print(coefficient, feature_name)
+    
+    print("Top " + str(n) + ": ")
+    for coefficient, feature_name in coeff_to_feature[-n:]:
+        print(coefficient, feature_name)
+
+
 def logistic_regression(X_train, y_train, X_test, y_test, penalty='l2', max_iter=100, solver='liblinear', class_weight=None):
     model = LogisticRegression(max_iter=max_iter, penalty=penalty, solver=solver, class_weight=class_weight).fit(X_train, y_train)
     y_predict = model.predict(X_test)
@@ -72,15 +91,21 @@ def logistic_regression(X_train, y_train, X_test, y_test, penalty='l2', max_iter
     print("No. of iterations to converge: ", model.n_iter_)
     return model, y_predict, y_predict_prob
 
-def roc_stats(y_test, y_predict, y_predict_prob, name):
-    fpr, tpr, thresholds = roc_curve(y_test, y_predict_prob[:,1], pos_label = 1)
+def roc_stats(y_test, y_predict, pos_scores, name):
+    fpr, tpr, thresholds = roc_curve(y_test, pos_scores, pos_label = 1)
     plot_roc_graph(fpr, tpr, name)
-    print("AUC Score => ", roc_auc_score(y_test, y_predict_prob[:,1]))
+    print("AUC Score => ", roc_auc_score(y_test, pos_scores))
 
 def f1_score_stats(y_test, y_predict):
     print("F1 Score is: ", f1_score(y_test, y_predict))
 
-def tokenize(note):
-	tokens = RegexpTokenizer(r"\w+").tokenize(note)
-	tokenized_note = SPACE.join([token for token in tokens if (token.lower() not in stopwords_list and token != '')])
-	return tokenized_note
+def tokenize(note, return_as_list = False, lowercase = False, regex=re.compile(r"\w+")):
+    tokens = RegexpTokenizer(regex).tokenize(note)
+    
+    if lowercase:
+        tokens = [token.lower() for token in tokens]
+
+    if return_as_list:
+        return [token for token in tokens if (token.lower() not in stopwords_list and token != '')]
+    else:
+        return SPACE.join([token for token in tokens if (token.lower() not in stopwords_list and token != '')])
