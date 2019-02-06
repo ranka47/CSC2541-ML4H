@@ -26,8 +26,8 @@ def create_sequential_input(df, col_name, groupby_col):
     return sequences
 
 class items(Enum):
-    # HEART_RATE = 220045
-    # RESPIRATORY_RATE = 220210
+    HEART_RATE = 220045
+    RESPIRATORY_RATE = 220210
     O2_SATURATION = 220277
     BLOOD_PRESSURE = 220181
 
@@ -65,7 +65,6 @@ for item in items:
 
     model.fit_generator(input_generator(X_train, y_train), steps_per_epoch=X_train.shape[0], epochs=1)
 
-    # print(model.summary())
     y_predict_prob = model.predict_generator(input_generator(X_test), steps=X_test.shape[0])
 
     y_predict = np.array([0 if row < 0.5 else 1 for row in y_predict_prob])

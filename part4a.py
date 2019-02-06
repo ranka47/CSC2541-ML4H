@@ -64,18 +64,6 @@ for num_topic in num_topics:
 
 pickle.dump(num_topic_to_models, open("num_topic_to_models.dict", "wb"))
 
-# limit=110; start=1; step=10;
-# coherence_values = compute_coherence_values(dictionary=dictionary, corpus=corpus, start=start, limit=limit, step=step, coherence_score = 'u_mass', iterations=10)
-
-# import matplotlib.pyplot as plt
-# x = range(start, limit, step)
-# plt.plot(x, coherence_values)
-# plt.xlabel("Num Topics")
-# plt.ylabel("Coherence score")
-# plt.legend(("coherence_values"), loc='best')
-# plt.savefig('part4a_u_mass.png')
-
-
 """
 Number of topics:  20
 Coherence Score (U_Mass):  -0.42236587843071566

@@ -15,6 +15,10 @@ SPACE = " "
 stopwords_list = set(stopwords.words('english'))
 
 def plot_roc_graph(fpr, tpr, filename):
+    """
+    Plots ROC Graph from the false positive rate (fpr) and true positive rate (tpr) 
+    received and saves in the file named 'filename'
+    """
     plt.figure()
     plt.plot(fpr, tpr, color='red', lw=2, label='ROC Curve')
     plt.plot([0, 1], [0, 1], color='blue', lw=2, linestyle='--')
@@ -29,9 +33,17 @@ def mean_normalize(data):
     return (data - data.mean())/data.std()
 
 def minmax_normalize(data):
+    """
+    Performs min-max normalization on the data
+    """
     return (data - data.min())/(data.max() - data.min())
 
 def split_train_test(data, target_label, drop_cols = [''], binary_cols = [''], target_values=[0,1], normalize='default'):
+    """
+    Based on the arguments received, it splits the data into train and test test.
+    It can include target values, columns that can be dropped, normalization can also be done.
+    """
+
     if normalize == 'default': 
         print("No valid normalization technique specified. Skipping normalization")
 
@@ -53,6 +65,9 @@ def split_train_test(data, target_label, drop_cols = [''], binary_cols = [''], t
     return X_train, y_train, X_test, y_test
 
 def mortality_factors(coeff, feature_names, n=5):
+    """
+    Returns top n and lowest n features that affect the model based on the coefficients
+    """
     coeff_to_feature = []
     for index in range(len(feature_names)):
         coeff_to_feature.append([coeff[0][index], feature_names[index]])
@@ -85,6 +100,10 @@ def mortality_factors(coeff, feature_names, n=5):
 
 
 def logistic_regression(X_train, y_train, X_test, y_test, penalty='l2', max_iter=100, solver='liblinear', class_weight=None):
+    """
+    Trains a logistic regression based on the arguments and returns three values:
+    trained model, predicted values, probability of the predicted values
+    """
     model = LogisticRegression(max_iter=max_iter, penalty=penalty, solver=solver, class_weight=class_weight).fit(X_train, y_train)
     y_predict = model.predict(X_test)
     y_predict_prob = model.predict_proba(X_test)
@@ -92,14 +111,24 @@ def logistic_regression(X_train, y_train, X_test, y_test, penalty='l2', max_iter
     return model, y_predict, y_predict_prob
 
 def roc_stats(y_test, y_predict, pos_scores, name):
+    """
+    Prints out the AUC score and plots the roc graph
+    """
     fpr, tpr, thresholds = roc_curve(y_test, pos_scores, pos_label = 1)
     plot_roc_graph(fpr, tpr, name)
     print("AUC Score => ", roc_auc_score(y_test, pos_scores))
 
 def f1_score_stats(y_test, y_predict):
+    """
+    Prints out the F1 Score
+    """
     print("F1 Score is: ", f1_score(y_test, y_predict))
 
 def tokenize(note, return_as_list = False, lowercase = False, regex=re.compile(r"\w+")):
+    """
+    Tokenizes the note given using regexptokenizer. 
+    With the help of the extra argument, it is customizable
+    """
     tokens = RegexpTokenizer(regex).tokenize(note)
     
     if lowercase:
