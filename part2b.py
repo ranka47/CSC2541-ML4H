@@ -28,6 +28,6 @@ if __name__ == "__main__":
 
 	model, y_predict, y_predict_prob = logistic_regression(X_train, y_train, X_test, y_test, penalty='l1')
 
-	roc_stats(y_test, y_predict, y_predict_prob, 'ROC_part2b')
+	roc_stats(y_test, y_predict, y_predict_prob[:,1], 'ROC_part2b')
 	f1_score_stats(y_test, y_predict)
 	mortality_factors(model.coef_, tfidf_vectorizer.get_feature_names())

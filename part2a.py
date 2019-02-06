@@ -11,6 +11,6 @@ if __name__ == "__main__":
     X_train, y_train, X_test, y_test = split_train_test(data, 'mort_icu', drop_cols=drop_cols, binary_cols=binary_cols, normalize='minmax')
 
     model, y_predict, y_predict_prob = logistic_regression(X_train, y_train, X_test, y_test)
-    roc_stats(y_test, y_predict, y_predict_prob, 'ROC_part2a')
+    roc_stats(y_test, y_predict, y_predict_prob[:,1], 'ROC_part2a')
     f1_score_stats(y_test, y_predict)
     mortality_factors(model.coef_, X_train.columns)

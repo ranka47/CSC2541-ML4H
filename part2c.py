@@ -33,12 +33,18 @@ X_test_notes = tfidf_vectorizer.transform(X_test_doc['chartext'])
 X_train = hstack([X_train_icu, X_train_notes])
 X_test = hstack([X_test_icu, X_test_notes])
 
-model, y_predict, y_predict_prob = logistic_regression(X_train, y_train_icu, X_test, y_test_icu, penalty='l2', max_iter=1000)
+model, y_predict, y_predict_prob = logistic_regression(X_train, y_train_icu, X_test, y_test_icu, penalty='l1', max_iter=1000)
 
-roc_stats(y_test_icu, y_predict, y_predict_prob, 'ROC_part2c')
+roc_stats(y_test_icu, y_predict, y_predict_prob[:,1], 'ROC_part2c')
 f1_score_stats(y_test_icu, y_predict)
 mortality_factors(model.coef_, list(X_train_icu.columns) + list(tfidf_vectorizer.get_feature_names()))
 
 """
+L2:
 AUC Score =>  0.8471296737212014 [295]
+
+L1:
+No. of iterations to converge:  [17]
+AUC Score =>  0.8419681566581135
+F1 Score is:  0.32847424684159376
 """
